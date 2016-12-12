@@ -1,0 +1,23 @@
+{
+  "name": "onlylove",
+  "version": "1.0.1",
+  "description": "后台服务",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "glob": "^7.1.1",
+    "glob-base": "^0.3.0",
+    "glob-parent": "^3.0.1",
+    "mysql": "^2.12.0",
+    "xtemplate": "^4.6.0",
+    "xtpl": "^3.3.0"
+  }
+}
