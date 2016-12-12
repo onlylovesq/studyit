@@ -7,8 +7,9 @@ define(function(require,exports,module){
         $.ajax({
             url:'/teachers/add',
             data:formData,
-            method:'post'
+            type:'post'
         });
-
+        
+        return false;
     });
 });
