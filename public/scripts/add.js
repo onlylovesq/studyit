@@ -5,7 +5,7 @@ define(function(require,exports,module){
         let formData = $(this).serialize();
 
         $.ajax({
-            url:'/teacher/add',
+            url:'/teachers/add',
             data:formData,
             method:'post'
         });
