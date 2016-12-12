@@ -9,3 +9,7 @@ route.get('/',(req,res,next)=>{
 route.get('/add',(req,res,next)=>{
     res.render('teachers/add',{});
 });
+
+route.post('/add',(req,res,next)=>{
+    console.log("接口是否被请求");
+});
