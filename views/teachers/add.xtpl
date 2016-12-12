@@ -8,7 +8,7 @@
 		<li class="active">讲师添加</li>
 	</ol>
 	<div class="teacher-add">
-		<form action="" class="form-horizontal col-md-offset-2">
+		<form id="addTeacher" class="form-horizontal col-md-offset-2">
 			<div class="form-group">
 				<label for="" class="col-md-3 control-label">姓名</label>
 				<div class="col-md-4">
@@ -49,10 +49,17 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-7">
-					<a href="/advert/index" class="btn btn-success btn-sm pull-right"> 添 加 </a>
+					<input type="submit" class="btn btn-success btn-sm pull-right"
+					value="添加"/>
 				</div>							
 			</div>
 		</form>
 	</div>
 </div>
+{{/block}}
+
+{{#block ('script')}}
+	<script>
+		seajs.use('/scripts/add');
+	</script>
 {{/block}}
