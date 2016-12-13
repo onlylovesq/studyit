@@ -31,8 +31,8 @@
 				<label for="" class="col-md-3 control-label">类型</label>
 				<div class="col-md-2">
 					<select name="tc_type" class="form-control input-sm">
-						<option value="">讲师</option>
-						<option value="">管理员</option>
+						<option value="1">讲师</option>
+						<option value="0">管理员</option>
 					</select>
 				</div>
 			</div>
@@ -40,10 +40,10 @@
 				<label for="" class="col-md-3 control-label">性别</label>
 				<div class="col-md-4">
 					<label class="radio-inline">
-						<input type="radio" name="tc_gender" checked> 男
+						<input type="radio" value="1" name="tc_gender" checked> 男
 					</label>
 					<label class="radio-inline">
-						<input type="radio" name="tc_gender"> 女
+						<input type="radio" value="0" name="tc_gender"> 女
 					</label>
 				</div>
 			</div>

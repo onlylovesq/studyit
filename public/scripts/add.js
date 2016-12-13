@@ -7,7 +7,14 @@ define(function(require,exports,module){
         $.ajax({
             url:'/teachers/add',
             data:formData,
-            type:'post'
+            type:'post',
+            success:function(data){
+                if(data.code == 10000){
+                    location.reload();
+                }
+
+                alert(data.msg);
+            }
         });
         
         return false;
