@@ -8,7 +8,12 @@ class Teachers{
     static add(body,callback){
         //body即表单数据
         //插入操作
-        let sql = db.query('insert into `teacher` set ?',body,callback);
+        db.query('insert into `teacher` set ?',body,callback);
+    }
+
+    //查询数据
+    static show(callback){
+        db.query('select * from `teacher`',callback);
     }
 }
 

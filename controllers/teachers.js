@@ -4,7 +4,11 @@ const route = module.exports = express.Router();
 route.prefix = '/teachers';
 
 route.get('/',(req,res,next)=>{
-    res.render('teachers/index',{});
+    
+    tcModel.show((err,rows)=>{
+        res.render('teachers/index',{teachers:rows});
+    });
+
 });
 
 route.get('/add',(req,res,next)=>{
