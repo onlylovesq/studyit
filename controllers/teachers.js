@@ -15,6 +15,15 @@ route.get('/add',(req,res,next)=>{
     res.render('teachers/add',{});
 });
 
+route.get('/edit/:tc_id',(req,res,next)=>{
+    let param = req.params.tc_id;
+    tcModel.find(param,(err,rows)=>{
+        if(err)
+            return;
+        res.render('teachers/add',{});
+    });
+});
+
 route.post('/add',(req,res,next)=>{
     //post数据
     let body = req.body;

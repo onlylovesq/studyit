@@ -15,6 +15,12 @@ class Teachers{
     static show(callback){
         db.query('select * from `teacher`',callback);
     }
+
+    //查询单个数据
+    static find(tc_id,callback){
+        let query = 'select * from `teacher` where tc_id = '+tc_id;
+        db.query(query,callback);
+    }
 }
 
 module.exports = Teachers;

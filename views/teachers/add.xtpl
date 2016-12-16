@@ -60,6 +60,6 @@
 
 {{#block ('script')}}
 	<script>
-		seajs.use('/scripts/add');
+		seajs.use('/scripts/teachers/add');
 	</script>
 {{/block}}
