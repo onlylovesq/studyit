@@ -1,5 +1,5 @@
 define(function(require,exports,module){
-    let $ = require('jquery');
+    // let $ = require('jquery');
     $('#addTeacher').on('submit',function(){
         
         let formData = $(this).serialize();

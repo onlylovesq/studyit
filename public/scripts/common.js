@@ -1,5 +1,5 @@
 define(function(require,exports,module){
-    var $ = require('jquery');
+    // var $ = require('jquery');
     $('.navs a').on('click',function(){
 		$(this).next('ul').slideToggle();
 	});
