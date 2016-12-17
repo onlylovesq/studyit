@@ -8,31 +8,34 @@
 		<li class="active">讲师添加</li>
 	</ol>
 	<div class="teacher-add">
-		<form id="addTeacher" class="form-horizontal col-md-offset-2">
+		<form id="addTeacher" action="{{#if (teacher.tc_id)}} /teachers/edit {{else}} /teachers/add {{/if}} "  class="form-horizontal col-md-offset-2">
+			{{#if (teacher.tc_id)}}
+			<input type="hidden" value="{{teacher.tc_id}}" name="tc_id">
+			{{/if}}
 			<div class="form-group">
 				<label for="" class="col-md-3 control-label">姓名</label>
 				<div class="col-md-4">
-					<input type="text" name="tc_name" class="form-control input-sm" placeholder="讲师名称">
+					<input type="text" name="tc_name" value="{{teacher.tc_name}}" class="form-control input-sm" placeholder="讲师名称">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-md-3 control-label">密码</label>
 				<div class="col-md-4">
-					<input type="password" name="tc_pass" class="form-control input-sm">
+					<input type="password" name="tc_pass" value="{{teacher.tc_pass}}" class="form-control input-sm">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-md-3 control-label">入职时间</label>
 				<div class="col-md-4">
-					<input type="text" name="tc_join_time" class="form-control input-sm">
+					<input type="text" name="tc_join_time" value="{{teacher.tc_join_time}}" class="form-control input-sm">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="" class="col-md-3 control-label">类型</label>
 				<div class="col-md-2">
 					<select name="tc_type" class="form-control input-sm">
-						<option value="1">讲师</option>
-						<option value="0">管理员</option>
+						<option value="1" {{#if (teacher.tc_type === 1)}} selected {{/if}}>讲师</option>
+						<option value="0" {{#if (teacher.tc_type === 0)}} selected {{/if}}>管理员</option>
 					</select>
 				</div>
 			</div>
@@ -40,17 +43,17 @@
 				<label for="" class="col-md-3 control-label">性别</label>
 				<div class="col-md-4">
 					<label class="radio-inline">
-						<input type="radio" value="1" name="tc_gender" checked> 男
+						<input type="radio" value="1" name="tc_gender" {{#if (teacher.tc_gender === 1)}} checked {{/if}}> 男
 					</label>
 					<label class="radio-inline">
-						<input type="radio" value="0" name="tc_gender"> 女
+						<input type="radio" value="0" name="tc_gender" {{#if (teacher.tc_gender === 0)}} checked {{/if}}> 女
 					</label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-md-7">
 					<input type="submit" class="btn btn-success btn-sm pull-right"
-					value="添加"/>
+					value="{{#if (teacher.tc_id)}} 修改 {{else}} 添加 {{/if}}"/>
 				</div>							
 			</div>
 		</form>

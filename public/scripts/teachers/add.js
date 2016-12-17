@@ -3,9 +3,10 @@ define(function(require,exports,module){
     $('#addTeacher').on('submit',function(){
         
         let formData = $(this).serialize();
+        let url = $(this).attr('action').trim();
 
         $.ajax({
-            url:'/teachers/add',
+            url:url,
             data:formData,
             type:'post',
             success:function(data){

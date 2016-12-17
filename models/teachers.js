@@ -21,6 +21,14 @@ class Teachers{
         let query = 'select * from `teacher` where tc_id = '+tc_id;
         db.query(query,callback);
     }
+
+    static edit(body,callback){
+        let tc_id = body.tc_id;
+        //body包含了tc_id 但是在update语句中不可以修改id 所以要删除
+        delete body.tc_id;
+        let query = "update `teacher` set ? where tc_id = "+tc_id;
+        db.query(query,body,callback);
+    }
 }
 
 module.exports = Teachers;

@@ -20,13 +20,15 @@ route.get('/edit/:tc_id',(req,res,next)=>{
     tcModel.find(param,(err,rows)=>{
         if(err)
             return;
-        res.render('teachers/add',{});
+
+        res.render('teachers/add',{teacher:rows[0]});
     });
 });
-
+//添加讲师
 route.post('/add',(req,res,next)=>{
     //post数据
     let body = req.body;
+    console.log(body);
     //调用model进行数据存储
     tcModel.add(body,(err,rows)=>{
         if(err)
@@ -35,6 +37,21 @@ route.post('/add',(req,res,next)=>{
         res.json({
             code:10000,
             msg:'添加成功!',
+            result:{}
+        });
+    });
+});
+//编辑讲师
+route.post('/edit',(req,res,next)=>{
+    let body = req.body;
+
+    tcModel.edit(body,(err,rows)=>{
+        if(err)
+            return;
+        
+        res.json({
+            code:10000,
+            msg:'修改成功!',
             result:{}
         });
     });
