@@ -1,9 +1,9 @@
-define(function(require,exports,module){
-    
+define(function (require, exports, module) {
+
     // var $ = require('jquery');
     // require('bootstrap');
 
-    $('#teacherList').on('click','a.preview',function(){
+    $('#teacherList').on('click', 'a.preview', function () {
         $('#teacherModel').modal();
         return false;
     });

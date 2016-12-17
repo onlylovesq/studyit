@@ -12,16 +12,18 @@
 			{{#if (teacher.tc_id)}}
 			<input type="hidden" value="{{teacher.tc_id}}" name="tc_id">
 			{{/if}}
-			<div class="form-group">
+			<div class="form-group has-feedback">
 				<label for="" class="col-md-3 control-label">姓名</label>
 				<div class="col-md-4">
-					<input type="text" name="tc_name" value="{{teacher.tc_name}}" class="form-control input-sm" placeholder="讲师名称">
+					<input type="text" name="tc_name" data-required value="{{teacher.tc_name}}" class="form-control input-sm" placeholder="讲师名称">
+					<span class="glyphicon form-control-feedback"></span>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group has-feedback">
 				<label for="" class="col-md-3 control-label">密码</label>
 				<div class="col-md-4">
-					<input type="password" name="tc_pass" value="{{teacher.tc_pass}}" class="form-control input-sm">
+					<input type="password" name="tc_pass" data-required value="{{teacher.tc_pass}}" class="form-control input-sm">
+					<span class="glyphicon form-control-feedback"></span>
 				</div>
 			</div>
 			<div class="form-group">

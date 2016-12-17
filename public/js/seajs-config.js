@@ -5,6 +5,8 @@ seajs.config({
 	alias:{
 		jquery:'jquery/jquery.js',
 		bootstrap:'bootstrap/js/bootstrap.js',
+		validate:'jquery-validate/jquery-validate.js',
+		form:'jquery-form/jquery.form.js'
 	},
 	//实现全局模块提前加载
 	//在使用use后才会执行

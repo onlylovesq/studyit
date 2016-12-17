@@ -28,7 +28,6 @@ route.get('/edit/:tc_id',(req,res,next)=>{
 route.post('/add',(req,res,next)=>{
     //post数据
     let body = req.body;
-    console.log(body);
     //调用model进行数据存储
     tcModel.add(body,(err,rows)=>{
         if(err)
