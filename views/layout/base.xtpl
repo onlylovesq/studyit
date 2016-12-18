@@ -20,6 +20,8 @@
 
 	{{{block('template')}}}
 
+	{{{block('tpl')}}}
+
 	<script src="/libs/sea.js"></script>
 	<script src="/libs/seajs-preload.js"></script>
 	<script src="/js/seajs-config.js"></script>

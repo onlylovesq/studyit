@@ -55,3 +55,14 @@ route.post('/edit',(req,res,next)=>{
         });
     });
 });
+
+//查看讲师
+route.post('/preview',(req,res,next)=>{
+    let tc_id = req.body.tc_id;
+
+    tcModel.find(tc_id,(err,rows)=>{
+        if(err)
+            return;
+        res.json(rows[0]);
+    });
+}); 
