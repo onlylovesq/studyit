@@ -73,7 +73,7 @@ a:focus {
 }
 .main {
   min-width: 844px;
-  margin: 72px 0 30px 180px;
+  padding: 72px 0 30px 180px;
 }
 .main .header {
   width: 100%;

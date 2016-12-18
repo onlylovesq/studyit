@@ -1,12 +1,30 @@
 const express = require('express');
 const path = require('path');
 const glob = require('glob');
+//cookie中间件
+const cookieParser = require('cookie-parser');
+// session中间件
+const session = require('express-session');
+//post请求解析中间件
 const bodyParser = require('body-parser');
 const app = express();
 
-//设置模板引擎
+// 指定模板放在哪里了？
 app.set('views',__dirname+'/views');
+// 指定使用哪个模板引擎
 app.set('view engine','xtpl');
+
+// 应用cookie中间件
+// 此中间件就会在响应中设置cookie方法
+app.use(cookieParser());
+
+// 应用session中间件
+// 请求上添加一个属性session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  cookie: {maxAge: 60 * 60 * 24}
+}));
 
 //解析 application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended:false}));
