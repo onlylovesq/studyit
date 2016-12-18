@@ -1,5 +1,6 @@
 define(function(require,exports,module){
     // var $ = require('jquery');
+    var NProgress = require('nprogress');
     $('.navs a').on('click',function(){
 		$(this).next('ul').slideToggle();
 	});
@@ -15,4 +16,7 @@ define(function(require,exports,module){
             return false;
         }
     });
+
+    NProgress.start();
+    NProgress.done();
 });

@@ -6,7 +6,10 @@ seajs.config({
 		jquery:'jquery/jquery.js',
 		bootstrap:'bootstrap/js/bootstrap.js',
 		validate:'jquery-validate/jquery-validate.js',
-		form:'jquery-form/jquery.form.js'
+		form:'jquery-form/jquery.form.js',
+		nprogress:'nprogress/nprogress.js',
+		datepicker:'bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
+		language:'bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js'
 	},
 	//实现全局模块提前加载
 	//在使用use后才会执行

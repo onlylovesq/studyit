@@ -2,6 +2,16 @@ define(function (require, exports, module) {
     // let $ = require('jquery');
     require('validate');
     require('form');
+    require('datepicker');
+    require('language');
+
+    $('#datetimepicker').datetimepicker({
+        initialDate:new Date(),
+        format: 'yyyy-mm-dd',
+        language:'zh-CN',
+        autoclose:true,
+        minView:2
+    });
     //表单元素
     $('#addTeacher').validate({
         onKeyup:true,//何种条件下触发验证
