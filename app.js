@@ -24,7 +24,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,  
-  cookie: {maxAge: 60 * 60 * 24}
+  cookie: {maxAge: 600 * 600 * 240}
 }));
 
 //解析 application/x-www-form-urlencoded

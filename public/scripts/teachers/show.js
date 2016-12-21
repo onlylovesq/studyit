@@ -19,6 +19,17 @@ define(function (require, exports, module) {
 				teacherModal.find('table').html('');
 				teacherModal.find('table').append(html);
 
+				var jiguan = $('#jiguan').text().split(',');
+				$.ajax({
+					url:'/region',
+					type:'get',
+					success:function(msg){
+						let province = msg.p['000000'][jiguan[0]];
+						let city = msg.c[jiguan[0]][jiguan[1]];
+						let district = msg.d[jiguan[1]][jiguan[2]];
+						$('#jiguan').text(province+','+city+','+district);
+					}
+				});
 				// 在展示模态前将数据请求过来
 				teacherModal.modal();
 			}

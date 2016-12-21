@@ -8,7 +8,8 @@
 	<!-- 讲师资料 -->
 	<div class="body teacher-profile">
 		<div class="settings">
-			<form action="" class="form-horizontal">
+			<form action="" id="updateTeacher" class="form-horizontal">
+				<input type="hidden" name="tc_id" value="{{tc_id}}">
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">姓名</label>
 					<div class="col-md-5">
@@ -19,7 +20,7 @@
 					<label for="" class="col-md-3 control-label">头像</label>
 					<div class="col-md-2 preview">
 						{{#if (tc_avatar)}}
-						<img src="{{tc_avatar}}">
+						<img src="/avatars/{{tc_avatar}}">
 						{{else}}
 						<img src="/monkey.png">
 						{{/if}}
@@ -32,68 +33,62 @@
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">昵称</label>
 					<div class="col-md-5">
-						<input type="text" class="form-control input-sm" value="{{tc_roster}}">
+						<input type="text" name="tc_roster" class="form-control input-sm" value="{{tc_roster}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">性别</label>
 					<div class="col-md-3">
 						<label class="radio-inline">
-							<input type="radio" {{#if (tc_gender === 1)}} checked {{/if}}> 男
+							<input type="radio" value="1" {{#if (tc_gender === 1)}} checked {{/if}}> 男
 						</label>
 						<label class="radio-inline">
-							<input type="radio" {{#if (tc_gender === 0)}} checked {{/if}}> 女
+							<input type="radio" value="0" {{#if (tc_gender === 0)}} checked {{/if}}> 女
 						</label>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">出生日期</label>
 					<div class="col-md-5">
-						<input type="text" class="form-control input-sm date" value="{{tc_brithday}}">
+						<input type="text" name="tc_brithday" class="form-control input-sm date" value="{{tc_brithday}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">籍贯</label>
-					<div class="col-md-5">
-						<select name="" class="form-control input-sm">
-							<option value="">河北省</option>
-							<option value="">山东省</option>
-							<option value="">北京市</option>
+					<div class="col-md-5 hometown">
+						<select name="tc_province" class="form-control input-sm" id="province" data-id="{{tc_province}}">
+						
 						</select>
-						<select name="" class="form-control input-sm">
-							<option value="">河北省</option>
-							<option value="">山东省</option>
-							<option value="">北京市</option>
+						<select name="tc_city" class="form-control input-sm" id="city" data-id="{{tc_city}}">
+							
 						</select>
-						<select name="" class="form-control input-sm">
-							<option value="">河北省</option>
-							<option value="">山东省</option>
-							<option value="">北京市</option>
+						<select name="tc_district" class="form-control input-sm" id="xian" data-id="{{tc_district}}">
+							
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">手机号码</label>
 					<div class="col-md-5">
-						<input type="text" class="form-control input-sm" value="{{tc_cellphone}}">
+						<input type="text" name="tc_cellphone" class="form-control input-sm" value="{{tc_cellphone}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">电子邮箱</label>
 					<div class="col-md-5">
-						<input type="text" class="form-control input-sm" value="{{tc_email}}">
+						<input type="text" name="tc_email" class="form-control input-sm" value="{{tc_email}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">入职日期</label>
 					<div class="col-md-5">
-						<input type="text" class="form-control input-sm date" value="{{tc_join_time}}">
+						<input type="text" name="tc_join_time" class="form-control input-sm date" value="{{tc_join_time}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="col-md-3 control-label">个人介绍</label>
 					<div class="col-md-5 ckeditor">
-						<textarea id="ckeditor" name="" rows="15" class="form-control input-sm">
+						<textarea id="ckeditor" name="tc_introduce" rows="15" class="form-control input-sm">
 						{{# if(tc_introduce)}}
 							{{tc_introduce}}
 						{{else}}
@@ -104,7 +99,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-8">
-						<a href="/" class="btn btn-success btn-sm pull-right">保 存</a>
+						<button type="submit" class="btn btn-success btn-sm pull-right">保 存</button>
 						<a href="/repass" class="btn btn-link btn-sm pull-right">更改密码？</a>
 					</div>
 				</div>

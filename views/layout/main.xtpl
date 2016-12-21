@@ -8,7 +8,7 @@
 			<!-- 头像 -->
 			<div class="avatar img-circle">
 				{{#if (loginfo.tc_avatar)}}
-				<img src="{{loginfo.tc_avatar}}">
+				<img src="/avatars/{{loginfo.tc_avatar}}">
 				{{else}}
 				<img src="/monkey.png">
 				{{/if}}

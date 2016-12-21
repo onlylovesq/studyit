@@ -32,9 +32,18 @@ class Teachers{
         db.query(query,callback);
     }
 
+    //编辑讲师
     static edit(body,callback){
         let tc_id = body.tc_id;
         //body包含了tc_id 但是在update语句中不可以修改id 所以要删除
+        delete body.tc_id;
+        let query = "update `teacher` set ? where tc_id = "+tc_id;
+        db.query(query,body,callback);
+    }
+
+    //修改讲师个人资料
+    static  update(body,callback){
+        let tc_id = body.tc_id;
         delete body.tc_id;
         let query = "update `teacher` set ? where tc_id = "+tc_id;
         db.query(query,body,callback);

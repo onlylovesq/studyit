@@ -11,7 +11,9 @@ seajs.config({
 		datepicker:'bootstrap-datetimepicker/js/bootstrap-datetimepicker.js',
 		language:'bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js',
 		template:'artTemplate/template-native.js',
-		ckeditor:'ckeditor/ckeditor.js'
+		ckeditor:'ckeditor/ckeditor.js',
+		region:'jquery-region/jquery.region.js',
+		uploadify:'uploadify/jquery.uploadify.js'
 	},
 	//实现全局模块提前加载
 	//在使用use后才会执行

@@ -17,7 +17,7 @@ route.post('/',(req,res,next)=>{
         }
         if(rows[0]){
             req.session.loginfo = rows[0];
-            req.session.cookie._expires = new Date(Date.now() + 90000000);
+            // req.session.cookie._expires = new Date(Date.now() + 90000000);
             res.json({
                 code:10000,
                 msg:'登录成功!',
