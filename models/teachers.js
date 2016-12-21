@@ -22,6 +22,16 @@ class Teachers{
         db.query(query,callback);
     }
 
+    //判断用户登录
+    static authored(body,callback){
+        let tc_name = body.tc_name;
+        let tc_pass = body.tc_pass;
+
+        let query = 'select * from `teacher` where tc_name="'+tc_name+'" and tc_pass="'+tc_pass+'"';
+
+        db.query(query,callback);
+    }
+
     static edit(body,callback){
         let tc_id = body.tc_id;
         //body包含了tc_id 但是在update语句中不可以修改id 所以要删除
@@ -29,6 +39,7 @@ class Teachers{
         let query = "update `teacher` set ? where tc_id = "+tc_id;
         db.query(query,body,callback);
     }
+
 }
 
 module.exports = Teachers;

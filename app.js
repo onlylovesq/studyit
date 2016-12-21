@@ -23,6 +23,7 @@ app.use(cookieParser());
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
+  saveUninitialized: true,  
   cookie: {maxAge: 60 * 60 * 24}
 }));
 
@@ -32,6 +33,22 @@ app.use(bodyParser.urlencoded({extended:false}));
 //设置静态服务器
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'uploads')));
+
+app.use((req,res,next)=>{
+    let url = req.originalUrl;
+    let loginfo = req.session.loginfo;
+    // app.locals.demo = '你好';
+	// express提供一个全局的对象
+	// 在些对象的数据可以任何视图上获得
+
+    app.locals.loginfo = loginfo;
+
+    if(url != '/login' && !loginfo){
+        return res.redirect('/login');
+    }
+
+    next();
+});
 
 glob.sync('./controllers/*.js').forEach(item=>{
     let temp = require(item);
