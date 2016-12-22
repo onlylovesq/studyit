@@ -37,24 +37,24 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:;">
+					<a href="/courses">
 						<i class="fa fa-cog"></i>
 						课程管理
 						<i class="arrow fa fa-angle-right"></i>
 					</a>
 					<ul class="list-unstyled">
 						<li>
-							<a href="/course/add">
+							<a href="/courses/add">
 								 课程添加
 							</a>
 						</li>
 						<li>
-							<a href="/course/list">
+							<a href="/courses">
 								课程列表
 							</a>
 						</li>
 						<li>
-							<a href="/course/category">
+							<a href="/courses/category">
 								课程分类
 							</a>
 						</li>
