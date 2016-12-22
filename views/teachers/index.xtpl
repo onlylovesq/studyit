@@ -40,7 +40,7 @@
 					<td>{{xindex+1}}</td>
 					<td>{{this.tc_name}}</td>
 					<td>{{this.tc_roster}}</td>
-					<td></td>
+					<td>{{date[xindex]}}</td>
 					{{#if(this.tc_gender === 1)}}
 					<td>男</td>
 					{{else}}

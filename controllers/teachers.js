@@ -6,7 +6,11 @@ route.prefix = '/teachers';
 route.get('/',(req,res,next)=>{
     
     tcModel.show((err,rows)=>{
-        res.render('teachers/index',{teachers:rows});
+        let date = [];
+        rows.forEach(function(item,index){
+            date.push(new Date().getFullYear()-(new Date(item.tc_brithday).getFullYear()));
+        });
+        res.render('teachers/index',{teachers:rows,date:date});
     });
 
 });
