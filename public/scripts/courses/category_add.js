@@ -2,8 +2,11 @@ define(function(require,exports,module){
     require('form');
 
     $('#addCategory').on('submit',function(){
+
+        var url = $(this).attr('action').trim();
+
         $(this).ajaxSubmit({
-            url:'/courses/category/add',
+            url:url,
             type:'post',
             success:function(data){
                 alert(data.msg);
