@@ -30,6 +30,17 @@ class Category{
         let query = 'update `category` set ? where cg_id = '+cg_id;
         db.query(query,body,callback);
     }
+    //获取课程关联的类别id获取所有顶级类别和对应的兄弟类别
+    static getParent(cs_cg_id,callback){
+        let query = 'select * from `category` where cg_pid=0 union select * from `category` where cg_pid = (select cg_pid from `category` where cg_id = '+ cs_cg_id +')';
+
+        db.query(query,callback);
+    }
+    //根据父级类别id获取类别
+    static getChild(cg_id,callback){
+        let query = 'select * from `category` where cg_pid = '+ cg_id;
+        db.query(query,callback);
+    }
 
 }
 
