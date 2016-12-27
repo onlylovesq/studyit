@@ -1,7 +1,16 @@
 define(function(require,exports,module){
     require('form');
+    // 引入ckeditor插件
+    const ck = require('ckeditor');
+    //ckeditor
+    ck.replace('ckeditor');
     // 提交表单
 	$('#basicCourse').on('submit', function () {
+
+        //提交ckeditor数据
+        for(instance in CKEDITOR.instances){
+            CKEDITOR.instances[instance].updateElement();
+        }
 
 		$(this).ajaxSubmit({
 			url: '/courses/basic',
@@ -10,7 +19,7 @@ define(function(require,exports,module){
 				alert(data.msg);
 
 				if(data.code == 10000) {
-					location.href = '/course/picture/' + data.result.cs_id;
+					location.href = '/courses/picture/' + data.result.cs_id;
 				}
 			}
 		});
