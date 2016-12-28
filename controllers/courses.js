@@ -1,19 +1,45 @@
 const express = require('express');
+//分类模型
 const cgModel = require('../models/category');
+//课程模型
 const csModel = require('../models/courses');
+//讲师模型
 const tcModel = require('../models/teachers');
+//工具
 const common = require('../util/common');
+
+const path = require('path');
+const rootPath = path.join(__dirname,'../');
+//上传文件
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,rootPath+'uploads/original');
+    },
+    filename:function(req,file,cb){
+        let originalname = file.originalname;
+        let fileName = originalname.slice(0,originalname.lastIndexOf('.'));
+        let fileExt = originalname.slice(originalname.lastIndexOf('.'));
+
+        cb(null,fileName+'-'+Date.now()+fileExt);
+    }
+});
+
+const upload = multer({storage:storage});
+
 const route = module.exports = express.Router();
+//Q框架
 const Q = require('q');
-//将两个查询函数转成promise对象
+//将函数转成promise对象 方便then 解决回调地狱
 let show = Q.denodeify(cgModel.show);
 let find = Q.denodeify(cgModel.find);
 let csAdd = Q.denodeify(csModel.add);
 let csFind = Q.denodeify(csModel.find);
-let tcShow = Q.denodeify(tcModel.show);
 let cgGetParent = Q.denodeify(cgModel.getParent);
 let cgGetChild = Q.denodeify(cgModel.getChild);
 let csUpdate = Q.denodeify(csModel.update);
+let tcShow = Q.denodeify(tcModel.show);
+let tcFind = Q.denodeify(tcModel.find);
 
 route.prefix = '/courses';
 
@@ -221,7 +247,42 @@ route.post('/getChild',(req,res,next)=>{
 });
 
 // 添加封面图
-route.get('/picture/:cs_id', function (req, res) {
+route.get('/picture/:cs_id', (req,res,next)=> {
+    //课程ID
+    let cs_id = req.params.cs_id;
+    let data = {};
+    csFind(cs_id)
+        .then((result)=>{
+            let tc_id = result[0][0]['cs_tc_id'];
+            data.course = result[0][0];
+            return tcFind(tc_id);
+        })
+        .then((result)=>{
+            res.render('courses/picture',{course:data.course,teacher:result[0][0]});
+        })
+        .catch((err)=>{
+            console.log(err);
+            return;
+        });
 
-	res.render('courses/picture');
+	
+});
+
+//上传文件
+route.post('/upfile',upload.single('upfile'),(req,res,next)=>{
+    // let body = {
+    //     cs_cover_original:req.file.filename,
+    //     cs_id:req.body.cs_id
+    // }
+
+    // csUpdate(body)
+    //     .then((data)=>{
+    //         res.json(req.file);
+    //     })
+    //     .catch((err)=>{
+    //         console.log(err);
+    //         return;
+    //     });
+
+    res.json(req.file);
 });
