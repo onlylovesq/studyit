@@ -1,3 +1,7 @@
+const gm = require('gm');
+const path = require('path');
+const rootPath = path.join(__dirname,'../');
+
 exports.getTree = getTree;
 //获取课程类别下的所有父子级对应的数据
 function getTree(data,pid){
@@ -23,4 +27,16 @@ function getTree(data,pid){
     })();
 
     return array;
+}
+
+exports.crop = function(x,y,w,h,filename,callback){
+    // 将裁切后的图片进存储时，需要明确后缀
+    let fileExt = filename.slice(filename.lastIndexOf('.'));
+    let fileName = Date.now();
+    
+    gm(rootPath+'/uploads/original/'+filename)
+    .crop(w,h,x,y)
+    .write(rootPath+'/uploads/thumbs/'+fileName+fileExt,()=>{
+        callback(fileName+fileExt);
+    });
 }

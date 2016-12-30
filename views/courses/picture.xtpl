@@ -1,5 +1,9 @@
 {{extend ('../layout/main')}}
 
+{{#block ('style')}}
+	<link rel="stylesheet" href="/assets/Jcrop/css/Jcrop.css">
+{{/block}}
+
 {{#block ('content')}}
 	<div class="body course-add">
 		<!-- 面包屑 -->
@@ -57,10 +61,19 @@
 						<a href="javascript:;" id="upfile" class="btn btn-success btn-sm">选择图片</a>
 					</div>
 					<div class="col-md-2">
-						<a href="javascript:;" class="btn btn-warning btn-sm" disabled>裁切图片</a>
+						{{#if (course.cs_cover_original)}}
+						<input type="button" class="btn btn-warning btn-sm" id="cutBtn" data-status="cut" value="裁切图片">
+						{{else}}
+						<input type="button" class="btn btn-warning btn-sm" id="cutBtn" disabled value="裁切图片">
+						{{/if}}
 					</div>
-					<form action="" style="display:none">
-						<input type="hidden" id="csId" value="{{course.cs_id}}">
+					<form id="coords" action="" style="display:none">
+						<input type="hidden" name="x" id="x">
+						<input type="hidden" name="y" id="y">
+						<input type="hidden" name="w" id="w">
+						<input type="hidden" name="h" id="h">
+						<input type="hidden" name="cs_id" id="csId" value="{{course.cs_id}}">
+						<input type="hidden" name="cs_cover_original" id="cover" value="{{course.cs_cover_original}}">
 					</form>
 				</div>
 			</div>

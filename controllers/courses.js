@@ -270,19 +270,56 @@ route.get('/picture/:cs_id', (req,res,next)=> {
 
 //上传文件
 route.post('/upfile',upload.single('upfile'),(req,res,next)=>{
-    // let body = {
-    //     cs_cover_original:req.file.filename,
-    //     cs_id:req.body.cs_id
-    // }
+    // 将原始图片也要存入数据
+	// 方便下次用户修改
+    let body = {
+        cs_cover_original:req.file.filename,
+        cs_id:req.body.cs_id
+    }
 
-    // csUpdate(body)
-    //     .then((data)=>{
-    //         res.json(req.file);
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err);
-    //         return;
-    //     });
+    csUpdate(body)
+        .then((data)=>{
+            res.json(req.file);
+        })
+        .catch((err)=>{
+            console.log(err);
+            return;
+        });
 
-    res.json(req.file);
+});
+
+route.post('/crop',(req,res,next)=>{
+    //接收参数
+    //调用裁切工具
+    //将裁切好的图片存到数据库
+    let x = req.body.x,
+        y = req.body.y,
+        w = req.body.w,
+        h = req.body.h,
+        filename = req.body.cs_cover_original;
+        
+    //调用裁切方法
+    common.crop(x,y,w,h,filename,(path)=>{
+        //裁切完成后入库拼凑参数
+        let body = {
+            cs_cover:path,
+            cs_id:req.body.cs_id
+        }
+
+        //入库
+        csUpdate(body)
+            .then((rows)=>{
+                res.json({
+                    code:10000,
+                    msg:'裁切成功!',
+                    result:{
+                        cs_id:req.body.cs_id
+                    }
+                });
+            })
+            .catch((err)=>{
+                console.log(err);
+                return;
+            });
+    });
 });
