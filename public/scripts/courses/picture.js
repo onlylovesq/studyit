@@ -71,6 +71,9 @@ define(function(require,exports,module){
             type:'post',
             success:function(data){
                 alert(data.msg);
+                if(data.code === 10000){
+                    location.href = '/courses/lesson/'+data.result.cs_id;
+                }
             }
         });
         return false;

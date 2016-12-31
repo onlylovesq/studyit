@@ -5,6 +5,8 @@ const cgModel = require('../models/category');
 const csModel = require('../models/courses');
 //讲师模型
 const tcModel = require('../models/teachers');
+//课时模型
+const lsModel = require('../models/lesson');
 //工具
 const common = require('../util/common');
 
@@ -40,6 +42,7 @@ let cgGetChild = Q.denodeify(cgModel.getChild);
 let csUpdate = Q.denodeify(csModel.update);
 let tcShow = Q.denodeify(tcModel.show);
 let tcFind = Q.denodeify(tcModel.find);
+let lsAdd = Q.denodeify(lsModel.add);
 
 route.prefix = '/courses';
 
@@ -322,4 +325,50 @@ route.post('/crop',(req,res,next)=>{
                 return;
             });
     });
+});
+
+//展示课时
+route.get('/lesson/:cs_id',(req,res,next)=>{
+    //根据ID取出课程信息
+    let cs_id = req.params.cs_id;
+
+    let data = {};
+
+    csFind(cs_id)
+        .then((result)=>{
+            data.course = result[0][0];
+            let cs_tc_id = result[0][0].cs_tc_id;
+            return tcFind(cs_tc_id);
+        })
+        .then((rows)=>{
+            data.teacher = rows[0][0];
+            res.render('courses/lesson',data);
+        })
+        .catch((err)=>{
+            console.log(err);
+            return;
+        });
+});
+
+//添加课时
+route.post('/lesson',(req,res,next)=>{
+    let ls_minutes = req.body.ls_minutes;
+    let ls_seconds = req.body.ls_seconds;
+
+    req.body.ls_video_duration = ls_minutes + ':' + ls_seconds;
+
+    delete req.body.ls_minutes;
+    delete req.body.ls_seconds;
+
+    //将接收数据添加到数据库
+    lsAdd(req.body)
+        .then((result)=>{
+            console.log(result);
+        })
+        .catch((err)=>{
+            console.log(err);
+            return;
+        });
+    
+    res.send('111');
 });
