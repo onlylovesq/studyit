@@ -33,7 +33,7 @@ exports.crop = function(x,y,w,h,filename,callback){
     // 将裁切后的图片进存储时，需要明确后缀
     let fileExt = filename.slice(filename.lastIndexOf('.'));
     let fileName = Date.now();
-    
+    //gm插件用法(切记一定要先安装GraphicsMagick 然后配置好环境变量才可以使用gm)
     gm(rootPath+'/uploads/original/'+filename)
     .crop(w,h,x,y)
     .write(rootPath+'/uploads/thumbs/'+fileName+fileExt,()=>{

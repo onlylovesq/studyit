@@ -7,13 +7,22 @@ define(function(require,exports,module){
     //引入提交表单插件
     require('form');
 
-    var preview = $('.preview img');
+    let preview = $('.preview img');
+    let jcrop_api;
 
     function imgCrop(){
+
+        if(jcrop_api){
+            jcrop_api.destroy();
+        }
+
         preview.Jcrop({
             boxWidth:400,
             aspectRatio:2
         },function(){
+
+            jcrop_api = this;
+
             //在回调函数中设置默认选区
             let width = this.ui.stage.width;
             let height = this.ui.stage.height;
@@ -27,6 +36,14 @@ define(function(require,exports,module){
 
             this.newSelection();
             this.setSelect([x,y,w,h]);
+
+            //将插件修改了 因此可以添加thumb:'.thumb'
+            thumbnail = this.initComponent('Thumbnailer', { width: 240, height: 120, thumb: '.thumb' });
+            //将预览区域和缩略图区域重合
+            $('.jcrop-thumb').css({
+                left:0,
+                top:0
+            });
         });
     }
 
