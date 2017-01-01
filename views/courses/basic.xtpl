@@ -11,7 +11,7 @@
 		<!-- 摘要 -->
 		<div class="brief">
 			<div class="thumb">
-				<img src="{{course.cs_cover}}" alt="">
+				<img src="/thumbs/{{course.cs_cover}}" alt="">
 			</div>
 			<dl class="info">
 				<dt>{{course.cs_name}}</dt>
@@ -61,7 +61,7 @@
 				<div class="form-group">
 					<label for="" class="col-md-2 control-label">讲师</label>
 					<div class="col-md-8">
-						<select name="" class="form-control input-sm">
+						<select name="cs_tc_id" class="form-control input-sm">
 							{{#each (teachers)}}
 							<option {{#if (this.tc_id === course.cs_tc_id)}} selected {{/if}} value="{{this.tc_id}}">{{this.tc_name}}</option>
 							{{/each}}
@@ -86,7 +86,7 @@
 				<div class="form-group">
 					<label for="" class="col-md-2 control-label">标签</label>
 					<div class="col-md-8">
-						<input type="text" name="cs_tags" class="form-control input-sm">
+						<input type="text" name="cs_tags" value="{{course.cs_tags}}" class="form-control input-sm">
 						<p class="help-block">将会应用于按标签搜索课程、相关课程的提取等</p>
 					</div>
 				</div>

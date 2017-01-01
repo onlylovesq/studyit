@@ -43,6 +43,7 @@ let csUpdate = Q.denodeify(csModel.update);
 let tcShow = Q.denodeify(tcModel.show);
 let tcFind = Q.denodeify(tcModel.find);
 let lsAdd = Q.denodeify(lsModel.add);
+let lsFind = Q.denodeify(lsModel.find);
 
 route.prefix = '/courses';
 
@@ -260,8 +261,8 @@ route.get('/picture/:cs_id', (req,res,next)=> {
             data.course = result[0][0];
             return tcFind(tc_id);
         })
-        .then((result)=>{
-            res.render('courses/picture',{course:data.course,teacher:result[0][0]});
+        .then((rows)=>{
+            res.render('courses/picture',{course:data.course,teacher:rows[0][0]});
         })
         .catch((err)=>{
             console.log(err);
@@ -342,6 +343,12 @@ route.get('/lesson/:cs_id',(req,res,next)=>{
         })
         .then((rows)=>{
             data.teacher = rows[0][0];
+            let ls_cs_id = cs_id;
+            return lsFind(ls_cs_id);
+            
+        })
+        .then((lesson)=>{
+            data.lessons = lesson[0];
             res.render('courses/lesson',data);
         })
         .catch((err)=>{
