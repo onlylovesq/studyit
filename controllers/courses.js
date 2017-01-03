@@ -44,6 +44,7 @@ let tcShow = Q.denodeify(tcModel.show);
 let tcFind = Q.denodeify(tcModel.find);
 let lsAdd = Q.denodeify(lsModel.add);
 let lsFind = Q.denodeify(lsModel.find);
+let lsShow = Q.denodeify(lsModel.show);
 
 route.prefix = '/courses';
 
@@ -367,15 +368,37 @@ route.post('/lesson',(req,res,next)=>{
     delete req.body.ls_minutes;
     delete req.body.ls_seconds;
 
+    if(req.body.ls_is_free === undefined){
+        req.body.ls_is_free = 0;
+    }
+
     //将接收数据添加到数据库
     lsAdd(req.body)
-        .then((result)=>{
-            console.log(result);
+        .then((data)=>{
+            res.json({
+                code:10000,
+                msg:'添加成功',
+                result:{
+
+                }
+            });
         })
         .catch((err)=>{
             console.log(err);
             return;
         });
     
-    res.send('111');
+});
+
+//编辑展示
+route.post('/lesson/edit',(req,res,next)=>{
+    let ls_id = req.body.ls_id;
+    lsShow(ls_id)
+        .then((result)=>{
+            res.json(result[0][0]);
+        })
+        .catch((err)=>{
+            console.log(err);
+            return;
+        })
 });
