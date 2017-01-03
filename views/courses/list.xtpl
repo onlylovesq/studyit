@@ -34,19 +34,20 @@
 			</form>
 		</div>
 		<div class="course">
+			{{#each (courses)}}
 			<div class="pic">
-				<img src="./uploads/course_1.jpg" alt="">
+				<img src="/thumbs/{{this.cs_cover}}" alt="">
 			</div>
 			<div class="info">
-				<a href="javascript:;">html,div+css视频教程(2014最新,带多个企业级项目实战)</a>
+				<a href="javascript:;">{{this.ls_name}}</a>
 				<ul class="list-unstyled">
 					<li>
-						<span>讲师：李鹏周</span>
-						<span>类别：前端开发</span>
+						<span>讲师: {{this.tc_name}}</span>
+						<span>大类别：后端开发</span>
 					</li>
 					<li>
-						<span>课时：32</span>
-						<span>学员：9823</span>
+						<span>类别：{{this.cg_name}}</span>
+						<span>课时：5 </span>
 					</li>
 					<li>
 						<span>浏览：11313</span>
@@ -54,116 +55,7 @@
 					</li>
 				</ul>
 			</div>
-		</div>
-		<div class="course">
-			<div class="pic">
-				<img src="./uploads/course_2.jpg" alt="">
-			</div>
-			<div class="info">
-				<a href="javascript:;">JavaScript 基础</a>
-				<ul class="list-unstyled">
-					<li>
-						<span>讲师：李鹏周</span>
-						<span>类别：前端开发</span>
-					</li>
-					<li>
-						<span>课时：32</span>
-						<span>学员：9823</span>
-					</li>
-					<li>
-						<span>浏览：11313</span>
-						<span></span>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="course">
-			<div class="pic">
-				<img src="./uploads/course_3.jpg" alt="">
-			</div>
-			<div class="info">
-				<a href="javascript:;">App开发从0到1</a>
-				<ul class="list-unstyled">
-					<li>
-						<span>讲师：李鹏周</span>
-						<span>类别：前端开发</span>
-					</li>
-					<li>
-						<span>课时：32</span>
-						<span>学员：9823</span>
-					</li>
-					<li>
-						<span>浏览：11313</span>
-						<span></span>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="course">
-			<div class="pic">
-				<img src="./uploads/course_4.jpg" alt="">
-			</div>
-			<div class="info">
-				<a href="javascript:;">Java 从入门到精通</a>
-				<ul class="list-unstyled">
-					<li>
-						<span>讲师：李鹏周</span>
-						<span>类别：前端开发</span>
-					</li>
-					<li>
-						<span>课时：32</span>
-						<span>学员：9823</span>
-					</li>
-					<li>
-						<span>浏览：11313</span>
-						<span></span>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="course">
-			<div class="pic">
-				<img src="./uploads/course_1.jpg" alt="">
-			</div>
-			<div class="info">
-				<a href="javascript:;">html,div+css视频教程(2014最新,带多个企业级项目实战)</a>
-				<ul class="list-unstyled">
-					<li>
-						<span>讲师：李鹏周</span>
-						<span>类别：前端开发</span>
-					</li>
-					<li>
-						<span>课时：32</span>
-						<span>学员：9823</span>
-					</li>
-					<li>
-						<span>浏览：11313</span>
-						<span></span>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="course">
-			<div class="pic">
-				<img src="./uploads/course_3.jpg" alt="">
-			</div>
-			<div class="info">
-				<a href="javascript:;">App开发从0到1</a>
-				<ul class="list-unstyled">
-					<li>
-						<span>讲师：李鹏周</span>
-						<span>类别：前端开发</span>
-					</li>
-					<li>
-						<span>课时：32</span>
-						<span>学员：9823</span>
-					</li>
-					<li>
-						<span>浏览：11313</span>
-						<span></span>
-					</li>
-				</ul>
-			</div>
+			{{/each}}
 		</div>
 	</div>
 	<!-- 分页 -->
@@ -177,5 +69,10 @@
 		<li><a href="#">下一页</a></li>
 	</ul>
 </div>
-
 {{/block}}	
+
+{{#block ('script')}}
+	<script>
+		seajs.use('/scripts/courses/list');
+	</script>
+{{/block}}

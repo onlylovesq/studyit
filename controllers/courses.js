@@ -45,6 +45,10 @@ let tcFind = Q.denodeify(tcModel.find);
 let lsAdd = Q.denodeify(lsModel.add);
 let lsFind = Q.denodeify(lsModel.find);
 let lsShow = Q.denodeify(lsModel.show);
+let lsShowCount = Q.denodeify(lsModel.showCount);
+let csList = Q.denodeify(csModel.list);
+let funcCgName = Q.denodeify(funCgName);
+let funcLessonCount = Q.denodeify(funLessonCount);
 
 route.prefix = '/courses';
 
@@ -402,3 +406,80 @@ route.post('/lesson/edit',(req,res,next)=>{
             return;
         })
 });
+
+route.get('/list',(req,res,next)=>{
+    //取出所有的课程
+    let data = {};
+    data.categorys = [];
+    data.lessons = [];
+
+    csModel.list((err,rows)=>{
+        if(err)
+            return;
+        data.courses = result[0];
+
+        funCgName(data.courses,data.categorys);
+    });
+
+    // csList()
+    //     .then((result)=>{
+    //         data.courses = result[0];
+    //     }).then((rows)=>{
+    //         var lll = funCgName(data.courses,data.categorys);
+    //         // Q.all([funcCgName(data.courses,data.categorys),funcLessonCount(data.courses,data.lessons)]).spread((x,y)=>{
+    //         //     console.log(x);
+    //         //     console.log(y);
+    //         // });
+    //         console.log(lll);
+            
+    //     })  
+    //     .catch((err)=>{
+    //         console.log(err);
+    //         return;
+    //     });
+
+   
+
+        // .then((rows)=>{
+        //    return funcCgName(data.courses,data.categorys);
+        // })
+        // .then((rows1)=>{
+        //     console.log(data.categorys);
+        //     return funcLessonCount(data.courses,data.lessons);
+        // })
+        // .then((rows2)=>{
+        //     res.render('courses/list',{courses:data.courses,categorys:data.categorys,lessons:data.lessons});
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        //     return;
+        // });
+});
+
+function funCgName(data,categorys){
+
+    for(var i = 0;i<data.length;i++){
+        var obj = data[i];
+        (function(o){
+            cgModel.find(data[i].cg_pid,(err,rows)=>{
+                if(err)
+                    return;
+            
+                categorys.push(rows[0]);
+            })
+        })(obj);
+        
+    }    
+
+}
+
+function funLessonCount(data,lessons){
+    data.forEach((item,index)=>{
+        lsModel.showCount(item.ls_cs_id,(err,rows)=>{
+            if(err)
+                return;
+            lessons.push(rows[0]);
+        })
+    })
+    //return lessons;
+}

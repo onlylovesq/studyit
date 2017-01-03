@@ -26,6 +26,12 @@ class Lesson{
         let query = 'select * from `lesson` where ls_id = '+ls_id;
         db.query(query,callback);
     }
+
+    //根据课程id查询课时数量
+    static showCount(ls_cs_id,callback){
+        let query = 'select count(*) as count from `lesson` where ls_cs_id = '+ls_cs_id;
+        db.query(query,callback);
+    }
 }
 
 module.exports = Lesson;
