@@ -43,11 +43,11 @@
 				<ul class="list-unstyled">
 					<li>
 						<span>讲师: {{this.tc_name}}</span>
-						<span>大类别：后端开发</span>
+						<span>大类别：{{categorys[xindex].cg_name}}</span>
 					</li>
 					<li>
 						<span>类别：{{this.cg_name}}</span>
-						<span>课时：5 </span>
+						<span>课时：{{lessons[xindex].count}} </span>
 					</li>
 					<li>
 						<span>浏览：11313</span>
