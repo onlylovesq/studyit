@@ -69,6 +69,6 @@
 
 {{#block ('script')}}
 	<script>
-		seajs.use('/scripts/teachers/add');
+		seajs.use('/{path}/teachers/add');
 	</script>
 {{/block}}

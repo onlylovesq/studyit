@@ -32,6 +32,6 @@
 
 {{#block ('script')}}
 	<script>
-		seajs.use('/scripts/courses/addCourse');
+		seajs.use('/{path}/courses/addCourse');
 	</script>
 {{/block}}

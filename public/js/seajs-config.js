@@ -16,6 +16,9 @@ seajs.config({
 		uploadify:'uploadify/jquery.uploadify.js',
 		Jcrop:'Jcrop/js/Jcrop.js'
 	},
+	vars:{
+		path:'dist'
+	},
 	//实现全局模块提前加载
 	//在使用use后才会执行
 	//但是提前于use

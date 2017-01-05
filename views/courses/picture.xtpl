@@ -83,7 +83,7 @@
 
 {{#block ('script')}}
 	<script>
-		seajs.use('/scripts/courses/picture');
+		seajs.use('/{path}/courses/picture');
 	</script>
 {{/block}}
 

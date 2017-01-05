@@ -110,6 +110,6 @@
 
 {{#block ('script')}}
 	<script>
-		seajs.use('/scripts/dashboard/profile');
+		seajs.use('/{path}/dashboard/profile');
 	</script>
 {{/block}}
