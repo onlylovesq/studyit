@@ -1,0 +1,1 @@
+"use strict";define("/dist/courses/addCourse",["form"],function(s,e,t){s("form"),$("#addCourses").submit("on",function(){return $(this).ajaxSubmit({url:"/courses/add",type:"post",success:function(s){alert(s.msg),1e4===s.code&&(location.href="/courses/basic/"+s.result.insertId)}}),!1})});

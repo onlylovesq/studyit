@@ -1,0 +1,1 @@
+"use strict";define("/dist/courses/category_add",["form"],function(t,o,r){t("form"),$("#addCategory").on("submit",function(){var t=$(this).attr("action").trim();return $(this).ajaxSubmit({url:t,type:"post",success:function(t){alert(t.msg),1e4===t.code&&location.reload()}}),!1})});

@@ -1,0 +1,1 @@
+"use strict";define("/dist/login/index",["form"],function(i,n,t){i("form"),$("#login").on("submit",function(){return $(this).ajaxSubmit({url:"/login",type:"post",success:function(i){1e4===i.code?location.href="/":alert(i.msg)}}),!1})});

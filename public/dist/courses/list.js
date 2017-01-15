@@ -1,0 +1,1 @@
+"use strict";define("/dist/courses/list",["template"],function(t,e,s){t("template")});
